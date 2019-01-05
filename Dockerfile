@@ -76,7 +76,7 @@ scanelf --needed --nobanner --format '%n#p' --recursive /usr/local/lib/php/exten
 
 
 ADD https://raw.githubusercontent.com/php/php-src/php-${PHP_VERSION}/php.ini-production /usr/local/etc/php/php.ini
-ADD https://raw.githubusercontent.com/thanhsmind/https-proxy/raw/master/certs/rootCA.pem /usr/local/etc/php/rootCA.pem
+ADD https://raw.githubusercontent.com/thanhsmind/nginx-proxy/master/certs/rootCA.pem /usr/local/etc/php/rootCA.pem
 
 RUN set -xe \
 && echo "Modify php.ini config" \
