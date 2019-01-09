@@ -77,7 +77,9 @@ scanelf --needed --nobanner --format '%n#p' --recursive /usr/local/lib/php/exten
 
 ADD https://raw.githubusercontent.com/php/php-src/php-${PHP_VERSION}/php.ini-production /usr/local/etc/php/php.ini
 ADD https://curl.haxx.se/ca/cacert.pem /usr/local/etc/php/cacert.pem.txt
+
 RUN chmod 664 /usr/local/etc/php/cacert.pem.txt
+
 RUN set -xe \
 && echo "Modify php.ini config" \
 && sed -e "s/^short_open_tag .*$/short_open_tag = Off/g" -i /usr/local/etc/php/php.ini \
@@ -99,7 +101,7 @@ RUN set -xe \
 && sed -e "s/^\;opcache\.validate_timestamps.*$/opcache.validate_timestamps = 1/g" -i /usr/local/etc/php/php.ini \
 && sed -e "s/^\;opcache\.revalidate_freq.*$/opcache.revalidate_freq = 1/g" -i /usr/local/etc/php/php.ini \
 && sed -e "s/^\;curl\.cainfo.*$/curl\.cainfo = \/usr\/local\/etc\/php\/cacert\.pem\.txt/g" -i /usr/local/etc/php/php.ini \
-&& sed -e "s/^\;openssl\.cafile.*$/openssl\.cafile = \/usr\/local\/etc\/php\/cacert\.txt/g" -i /usr/local/etc/php/php.ini \
+&& sed -e "s/^\;openssl\.cafile.*$/openssl\.cafile = \/usr\/local\/etc\/php\/cacert\.pem\.txt/g" -i /usr/local/etc/php/php.ini \
 && sed -e "s/^mailhub.*$/mailhub=mail:1025/g" -i /etc/ssmtp/ssmtp.conf
 
 VOLUME ["${WORKDIRECTORY}"]
