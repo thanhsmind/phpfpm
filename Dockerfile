@@ -1,6 +1,6 @@
-FROM php:7.3.8-fpm-alpine
+FROM php:7.4.2-fpm-alpine3.11
 
-ARG PHP_VERSION=7.3.8
+ARG PHP_VERSION=7.4.2
 
 ARG WORKDIRECTORY=/app
 
